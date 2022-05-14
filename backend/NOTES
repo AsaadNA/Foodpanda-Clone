@@ -1,0 +1,38 @@
+=============================================
+
+- Data Generation & Api Documentation
+- # User Interface & Working policy
+
+- Login
+
+  - User
+  - Restraunt
+
+- Registration
+
+  - User
+  - Restraunt
+
+== MENU ==
+
+SubMenu , Menu item name , price & availbility
+
+- Insert new sub menu
+- Remove sub menu
+- Update sub menu
+
+== Order ==
+
+- Order food
+- Order status
+- Manage orders
+  - User
+  - Restraunt
+
+=== Features ==
+
+1. Login (User & Restraunt)
+2. Register (User & Restraunt)
+3. Menu (Restraunt)
+4. Order (User & Restraunt)
+5. Searching Restraunt (User)
