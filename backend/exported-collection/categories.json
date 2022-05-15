@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "6280f6c3f018d52fa579cda1"
+  },
+  "restaurantName": "PizzaHut",
+  "categoryName": "Pizza",
+  "items": [
+    {
+      "itemName": "Chicken Tikka",
+      "itemPrice": 1300,
+      "itemDescription": "13 Inch Pizza",
+      "_id": {
+        "$oid": "62811d1aa04fc26b7b860ef4"
+      }
+    },
+    {
+      "itemName": "Chicken Tikka",
+      "itemPrice": 1300,
+      "itemDescription": "13 Inch Pizza",
+      "_id": {
+        "$oid": "6281290430a97e19b5433197"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62811326f94531976abcf28b"
+  },
+  "restaurantName": "PizzaHut",
+  "categoryName": "Pizza",
+  "items": [
+    {
+      "itemName": "Pepsi",
+      "itemPrice": 70,
+      "itemDescription": "500ml pepsi",
+      "_id": {
+        "$oid": "6281295630a97e19b543319f"
+      }
+    },
+    {
+      "itemName": "Coke",
+      "itemPrice": 70,
+      "itemDescription": "500ml coke",
+      "_id": {
+        "$oid": "628129ee30a97e19b54331a4"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6281279e796bff9f0a77f09b"
+  },
+  "restaurantName": "PizzaHut",
+  "categoryName": "Desert",
+  "items": [],
+  "__v": 0
+}]

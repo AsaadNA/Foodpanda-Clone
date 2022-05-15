@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6280a2ee5315ce0e393d3130"
+  },
+  "restaurantName": "PizzaHut",
+  "email": "pizzahut@gmail.com",
+  "password": "123456",
+  "operatingArea": "Malir Cantonment",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628124e6796bff9f0a77f07d"
+  },
+  "restaurantName": "HotNSpicy",
+  "email": "hotnspicy@gmail.com",
+  "password": "123456",
+  "operatingArea": "Malir Cantonment",
+  "__v": 0
+}]
