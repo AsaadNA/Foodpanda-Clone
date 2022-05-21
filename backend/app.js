@@ -8,6 +8,7 @@ const axios = require("axios");
 const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/menu/categories");
 const itemRoutes = require("./routes/menu/items");
+const restaurantRoutes = require("./routes/restaurant");
 
 const DB_STRING =
   "mongodb://localhost:27017/foodpandaClone?readPreference=primary&ssl=false";
@@ -30,6 +31,7 @@ app.use(
 app.use("/api/auth/", authRoutes);
 app.use("/api/menu/category/", categoryRoutes);
 app.use("/api/menu/items/", itemRoutes);
+app.use("/api/restaurant/", restaurantRoutes);
 
 /*
 //DISPLAYING MENU API
