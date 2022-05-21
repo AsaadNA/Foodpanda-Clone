@@ -1,6 +1,5 @@
 import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import "../../App.css";
 
@@ -17,6 +16,9 @@ const Navigation = (props) => {
             style={{ width: "100%" }}
           >
             <LinkContainer to="/" className="Navlink">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/login" className="Navlink">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/signup">

@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 const axios = require("axios");
@@ -15,7 +16,11 @@ const DB_STRING =
 
 const app = express();
 
-app.set("view engine", "vash");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -61,7 +66,7 @@ mongoose.connect(DB_STRING, (err) => {
     console.log("Error occurred while connecting to database", err);
   } else {
     console.log("Connected to Database Successfully");
-    app.listen(3000, () => {
+    app.listen(4000, () => {
       console.log("Connected to Server Successfully");
     });
   }
