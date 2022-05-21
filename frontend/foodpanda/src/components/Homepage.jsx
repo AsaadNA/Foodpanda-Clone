@@ -89,7 +89,7 @@ const Homepage = () => {
                   {Resturants.map((Resturant) => {
                     return (
                       <div key={Resturant._id}>
-                        <Card className="card" style={{ margin: "20px" }}>
+                        <Card className="card" style={{ margin: "10px" }}>
                           <Card.Img
                             variant="top"
                             src="https://images.deliveryhero.io/image/fd-pk/LH/w2uc-listing.jpg"
