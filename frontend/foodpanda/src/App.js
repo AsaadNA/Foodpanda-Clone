@@ -34,7 +34,10 @@ function App() {
           <Route
             path="/resturant/manageOrders"
             element={
-              <PrivateRoute auth={{ isAuthenticated: false }}>
+              <PrivateRoute
+                auth={{ isAuthenticated: false }}
+                redirect="/resturant/login"
+              >
                 <ManageOrders></ManageOrders>
               </PrivateRoute>
             }

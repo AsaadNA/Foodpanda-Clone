@@ -1,9 +1,9 @@
 import React from "react";
 // import { useAuth } from "../../Contexts/AuthContext";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ auth: { isAuthenticated } }, children) => {
-  return isAuthenticated ? children : <Navigate to="/login" />;
+const PrivateRoute = ({ auth: { isAuthenticated }, children, redirect }) => {
+  return isAuthenticated ? children : <Navigate to={redirect} />;
 };
 
 export default PrivateRoute;
