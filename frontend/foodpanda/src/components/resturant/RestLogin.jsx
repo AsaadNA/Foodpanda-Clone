@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { AuthContext } from "../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 const RestLogin = () => {
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const { login, currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(Email, Password, "/api/auth/login/restaurant/", "/resturant/manage");
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/resturant/manage");
+    }
+      }, [currentUser, navigate]);
+
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
       <Row>
@@ -14,15 +32,28 @@ const RestLogin = () => {
               <p style={{ textAlign: "center" }}>
                 Login to your business account
               </p>
-              <Form style={{ textAlign: "left", marginTop: "10px" }}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form
+                style={{ textAlign: "left", marginTop: "10px" }}
+                onSubmit={handleSubmit}
+              >
+                <Form.Group className="mb-3" controlId="resturantEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="resturantPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                 </Form.Group>
                 <Button
                   variant="primary"

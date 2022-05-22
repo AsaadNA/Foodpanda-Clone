@@ -10,7 +10,13 @@
   background-color: #D70F64 !important;
   outline: none;
   border: none !important;
-  color: #f7f7f7;
+  color: #f7f7f7 !important;
+}
+.logout-button{
+  color: #D70F64 !important;
+  outline: none;
+  border: none !important;
+  background-color: #f7f7f7 !important;
 }
 .login-card{
     box-shadow: 0 .1rem .5rem rgba(0,0,0,.15);
@@ -22,6 +28,11 @@
   padding:30px;
   width: 100%;
   max-width: 750px;
+}
+.menu-card{
+  box-shadow: 0 .1rem .5rem rgba(0,0,0,.15);
+  padding:30px;
+  width: 320px;
 }
 .bussiness-text{
   font-weight: bold;
