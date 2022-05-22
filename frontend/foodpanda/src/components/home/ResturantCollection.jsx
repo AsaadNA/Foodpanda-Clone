@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
 import { Card } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";

@@ -20,14 +20,14 @@ export const AuthProvider = (props) => {
         console.log(response);
         localStorage.removeItem("userType");
         localStorage.removeItem("currentUser");
-        window.location.reload();
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const login = (email, password, loginRoute) => {
+  const loginResturant = (email, password, loginRoute) => {
     axios
       .post(loginRoute, {
         email: email,
@@ -47,13 +47,33 @@ export const AuthProvider = (props) => {
         console.log(error);
       });
   };
-
+  const loginCustomer = (username, password, loginRoute) => {
+    axios
+      .post(loginRoute, {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        // let token = response.data.token;
+        // console.log("==== " + token);
+        // localStorage.setItem("SavedToken", "Bearer " + token);
+        setCurrentUser(true);
+        console.log(response.data);
+        setuserType(response.data.data.userType);
+        localStorage.setItem("currentUser", true);
+        localStorage.setItem("userType", response.data.data.userType);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <AuthContext.Provider
         value={{
           currentUser,
-          login,
+          loginResturant,
+          loginCustomer,
           logout,
           token,
           loading,

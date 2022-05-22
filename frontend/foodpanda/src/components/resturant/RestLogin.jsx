@@ -7,18 +7,23 @@ import { useNavigate } from "react-router-dom";
 const RestLogin = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const { login, currentUser } = useContext(AuthContext);
+  const { loginResturant, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(Email, Password, "/api/auth/login/restaurant/", "/resturant/manage");
+    loginResturant(
+      Email,
+      Password,
+      "/api/auth/login/restaurant/",
+      "/resturant/manage"
+    );
   };
 
   useEffect(() => {
     if (currentUser) {
       navigate("/resturant/manage");
     }
-      }, [currentUser, navigate]);
+  }, [currentUser, navigate]);
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">

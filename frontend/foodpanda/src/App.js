@@ -6,14 +6,17 @@ import Navigation from "./components/navigation/Navigation";
 import RestRegister from "./components/resturant/RestRegister";
 import RestLogin from "./components/resturant/RestLogin";
 import ManageHome from "./components/resturant/ManageHome";
+import CustomerHome from "./components/customer/CustomerHome";
 import ManageOrders from "./components/resturant/ManageOrders";
 import ManageMenu from "./components/resturant/ManageMenu";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/Auth/PrivateRoute";
-import { AuthContext, AuthProvider } from "./components/Contexts/AuthContext";
+import { AuthContext } from "./components/Contexts/AuthContext";
 import { useContext, useEffect } from "react";
+import ViewOrders from "./components/customer/ViewOrders";
+import PlaceOrder from "./components/customer/PlaceOrder";
 
 function App() {
   const { currentUser, userType, setCurrentUser, setuserType } =
@@ -51,10 +54,7 @@ function App() {
           <Route
             path="/resturant/manage"
             element={
-              <PrivateRoute
-                auth={{ isAuthenticated: true }}
-                redirect="/resturant/login"
-              >
+              <PrivateRoute redirect="/resturant/login" type="restaurant">
                 <ManageHome></ManageHome>
               </PrivateRoute>
             }
@@ -62,10 +62,7 @@ function App() {
           <Route
             path="/resturant/manage/orders"
             element={
-              <PrivateRoute
-                auth={{ isAuthenticated: true }}
-                redirect="/resturant/login"
-              >
+              <PrivateRoute redirect="/resturant/login" type="restaurant">
                 <ManageOrders></ManageOrders>
               </PrivateRoute>
             }
@@ -73,11 +70,32 @@ function App() {
           <Route
             path="/resturant/manage/menu"
             element={
-              <PrivateRoute
-                auth={{ isAuthenticated: true }}
-                redirect="/resturant/login"
-              >
+              <PrivateRoute redirect="/resturant/login" type="restaurant">
                 <ManageMenu></ManageMenu>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/customer/manage"
+            element={
+              <PrivateRoute redirect="/login" type="customer">
+                <CustomerHome></CustomerHome>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/customer/manage/order"
+            element={
+              <PrivateRoute redirect="/login" type="customer">
+                <PlaceOrder></PlaceOrder>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/customer/manage/status"
+            element={
+              <PrivateRoute redirect="/login" type="customer">
+                <ViewOrders></ViewOrders>
               </PrivateRoute>
             }
           />

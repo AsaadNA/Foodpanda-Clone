@@ -9,7 +9,7 @@ const Navigation = ({ currentUser, userType }) => {
 
   const renderLinks = (currentUser, userType, logout) => {
     if (currentUser === "true" && userType === "restaurant") {
-      return (
+      return (  
         <>
           <LinkContainer to="/resturant/manage" className="Navlink">
             <Nav.Link>Home</Nav.Link>
@@ -28,15 +28,18 @@ const Navigation = ({ currentUser, userType }) => {
     } else if (currentUser === "true" && userType === "customer") {
       return (
         <>
-          <LinkContainer to="/resturant/manage" className="Navlink">
+          <LinkContainer to="/customer/manage" className="Navlink">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/customer/manage/order" className="Navlink">
             <Nav.Link>Place Order</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/resturant/manage/orders" className="Navlink">
+          <LinkContainer to="/customer/manage/status" className="Navlink">
             <Nav.Link>View Orders</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/resturant/manage/menu">
-            <Nav.Link>Logout</Nav.Link>
-          </LinkContainer>
+          <Button onClick={logout} className="logout-button">
+            Logout
+          </Button>
         </>
       );
     } else {

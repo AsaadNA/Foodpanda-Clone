@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Nav } from "react-bootstrap";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../Contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 const Login = () => {
+  const [Username, setUsername] = useState();
+  const [Password, setPassword] = useState();
+
+  const { loginCustomer, currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginCustomer(
+      Username,
+      Password,
+      "/api/auth/login/customer/",
+      "/customer/manage"
+    );
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/customer/manage");
+    }
+  }, [currentUser, navigate]);
+
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
       <Row>
@@ -12,14 +35,27 @@ const Login = () => {
                 Welcome!
               </h4>
               <p style={{ textAlign: "center" }}>Login to your account</p>
-              <Form style={{ textAlign: "left", marginTop: "10px" }}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+              <Form
+                style={{ textAlign: "left", marginTop: "10px" }}
+                onSubmit={handleSubmit}
+              >
+                <Form.Group className="mb-3" controlId="username">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter username"
+                    required
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
                 <Button
                   variant="primary"
