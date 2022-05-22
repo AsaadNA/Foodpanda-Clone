@@ -7,43 +7,73 @@ const RestRegister = () => {
       <Row>
         <Col md="6" className="mt-2">
           <div className="mt-5 d-flex flex-column  justify-content-center align-items-center">
-            <div className="login-card">
+            <div className="register-card">
               <h4 style={{ textAlign: "center", marginTop: "10px" }}>
                 Welcome!
               </h4>
               <p style={{ textAlign: "center" }}>Register your resturant</p>
               <Form style={{ textAlign: "left", marginTop: "10px" }}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Resturant Name</Form.Label>
-                  <Form.Control type="text" placeholder="Resturant Name" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                  <Form.Text className="text-muted">
-                    We'll never share this with anyone else.
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Operating Area</Form.Label>
-                  <Form.Select aria-label="Default select example">
-                    <option disabled>Select Area</option>
-                    <option value="1">Malir Cantt</option>
-                    <option value="2">P.E.C.H.S</option>
-                    <option value="3">Clifton</option>
-                  </Form.Select>
-                </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="form-button w-100"
-                >
-                  Register
-                </Button>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Resturant Name</Form.Label>
+                      <Form.Control type="text" placeholder="Resturant Name" />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control type="email" placeholder="Enter email" />
+                    </Form.Group>
+                  </Col>
+                  <Col md={12}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" />
+                      <Form.Text className="text-muted">
+                        We'll never share this with anyone else.
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Operating Area</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option disabled>Select Area</option>
+                        <option value="1">Malir Cantt</option>
+                        <option value="2">P.E.C.H.S</option>
+                        <option value="3">Clifton</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Type of Cusine</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option disabled>Select Cusine</option>
+                        <option value="1">Fast Food</option>
+                        <option value="2">Italian</option>
+                        <option value="3">Desi</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col md={12}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Delivery Charges</Form.Label>
+                      <Form.Control type="number" placeholder="Rs. 65" />
+                      <Form.Text className="text-muted">
+                        You change change this later.
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="form-button w-100"
+                  >
+                    Register
+                  </Button>
+                </Row>
               </Form>
             </div>
           </div>

@@ -17,6 +17,12 @@
     padding:30px;
     width: 350px;
 }
+.register-card{
+  box-shadow: 0 .1rem .5rem rgba(0,0,0,.15);
+  padding:30px;
+  width: 100%;
+  max-width: 750px;
+}
 .bussiness-text{
   font-weight: bold;
   cursor: pointer;

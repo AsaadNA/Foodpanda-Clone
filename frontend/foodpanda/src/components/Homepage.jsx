@@ -101,6 +101,7 @@ const Homepage = () => {
                               <br></br>
                               <span style={{ fontSize: "15px" }}>Chinese</span>
                             </Card.Title>
+                            <hr></hr>
                             <Card.Text>
                               {Resturant.operatingArea}
                               <p>

@@ -5,9 +5,11 @@ import Register from "./components/customer/Register";
 import Navigation from "./components/navigation/Navigation";
 import RestRegister from "./components/resturant/RestRegister";
 import RestLogin from "./components/resturant/RestLogin";
+import ManageOrders from "./components/resturant/ManageOrders";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./components/Auth/PrivateRoute";
 
 function App() {
   return (
@@ -29,6 +31,14 @@ function App() {
             path="/resturant/login"
             element={<RestLogin> </RestLogin>}
           ></Route>
+          <Route
+            path="/resturant/manageOrders"
+            element={
+              <PrivateRoute auth={{ isAuthenticated: false }}>
+                <ManageOrders></ManageOrders>
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>
