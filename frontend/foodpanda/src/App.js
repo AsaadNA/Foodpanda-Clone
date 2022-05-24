@@ -14,6 +14,7 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import { AuthContext } from "./components/Contexts/AuthContext";
+import { useNavigate, Navigate } from "react-router";
 import { useContext, useEffect } from "react";
 import ViewOrders from "./components/customer/ViewOrders";
 import PlaceOrder from "./components/customer/PlaceOrder";
@@ -21,7 +22,6 @@ import PlaceOrder from "./components/customer/PlaceOrder";
 function App() {
   const { currentUser, userType, setCurrentUser, setuserType } =
     useContext(AuthContext);
-
   useEffect(() => {
     if (
       localStorage.getItem("currentUser") &&
@@ -29,6 +29,11 @@ function App() {
     ) {
       setCurrentUser(localStorage.getItem("currentUser"));
       setuserType(localStorage.getItem("userType"));
+      if (userType === "restaurant") {
+        <Navigate to="/resturant/manage"></Navigate>;
+      } else if (userType === "customer") {
+        <Navigate to="/customer/manage"></Navigate>;
+      }
     }
   }, [setCurrentUser, setuserType, currentUser, userType]);
 

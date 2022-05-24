@@ -7,34 +7,70 @@ const Register = () => {
       <Row>
         <Col md="6" className="mt-2">
           <div className="mt-5 d-flex flex-column  justify-content-center align-items-center">
-            <div className="login-card">
+            <div className="register-card">
               <h4 style={{ textAlign: "center", marginTop: "10px" }}>
                 Welcome!
               </h4>
-              <p style={{ textAlign: "center" }}>Create your free account</p>
+              <p style={{ textAlign: "center" }}>Register your account</p>
               <Form style={{ textAlign: "left", marginTop: "10px" }}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="password" placeholder="Username" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                  <Form.Text className="text-muted">
-                    We'll never share it with anyone else.
-                  </Form.Text>
-                </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="form-button w-100"
-                >
-                  Register
-                </Button>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Your Name</Form.Label>
+                      <Form.Control type="text" placeholder="Your Name" />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control type="email" placeholder="Enter email" />
+                    </Form.Group>
+                  </Col>
+                  <Col md={12}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" />
+                      <Form.Text className="text-muted">
+                        We'll never share this with anyone else.
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Gender</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Age</Form.Label>
+                      <Form.Control type="number" placeholder="" />
+                    </Form.Group>
+                  </Col>
+                  <Col md={12}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Address</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="10th Street, P.E.C.H.S Block 6"
+                      />
+                      <Form.Text className="text-muted">
+                        You change change this later.
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="form-button w-100"
+                  >
+                    Register
+                  </Button>
+                </Row>
               </Form>
             </div>
           </div>

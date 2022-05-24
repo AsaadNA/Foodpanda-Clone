@@ -5,6 +5,7 @@ export const ResturantContext = createContext();
 
 export const ResturantProvider = (props) => {
   const [Resturants, setResturants] = useState([]);
+  const [Items, setItems] = useState([]);
 
   const fetchResturants = async () => {
     await axios
@@ -18,12 +19,29 @@ export const ResturantProvider = (props) => {
         console.log(error);
       });
   };
+
+  const fetchItems = async () => {
+    await axios
+      .get("/api/menu/items/PizzaHut")
+      .then(function (response) {
+        const items = response.data.data;
+        setItems(items);
+        console.log(items);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     fetchResturants();
+    fetchItems();
   }, []);
 
   return (
-    <ResturantContext.Provider value={[Resturants, setResturants]}>
+    <ResturantContext.Provider
+      value={{ Resturants, setResturants, Items, setItems }}
+    >
       {props.children}
     </ResturantContext.Provider>
   );

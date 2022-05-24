@@ -40,9 +40,9 @@ const RestRegister = () => {
                       <Form.Label>Operating Area</Form.Label>
                       <Form.Select aria-label="Default select example">
                         <option disabled>Select Area</option>
-                        <option value="1">Malir Cantt</option>
-                        <option value="2">P.E.C.H.S</option>
-                        <option value="3">Clifton</option>
+                        <option value="Malir Cantt">Malir Cantt</option>
+                        <option value="P.E.C.H.S">P.E.C.H.S</option>
+                        <option value="Clifton">Clifton</option>
                       </Form.Select>
                     </Form.Group>
                   </Col>
@@ -51,9 +51,9 @@ const RestRegister = () => {
                       <Form.Label>Type of Cusine</Form.Label>
                       <Form.Select aria-label="Default select example">
                         <option disabled>Select Cusine</option>
-                        <option value="1">Fast Food</option>
-                        <option value="2">Italian</option>
-                        <option value="3">Desi</option>
+                        <option value="Fast Food">Fast Food</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Desi">Desi</option>
                       </Form.Select>
                     </Form.Group>
                   </Col>

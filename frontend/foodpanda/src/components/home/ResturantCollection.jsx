@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import { Card } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
@@ -19,7 +19,8 @@ const responsive = {
 };
 
 const ResturantCollection = () => {
-  const [Resturants, setResturants] = useContext(ResturantContext);
+  const { Resturants, setResturants } = useContext(ResturantContext);
+
   return (
     <div>
       <Carousel responsive={responsive} style={{ width: "100%" }}>

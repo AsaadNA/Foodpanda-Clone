@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ResturantCollection from "./ResturantCollection";
 import FAQ from "./FAQ";
-import { ResturantProvider } from "../Contexts/ResturantContext";
+import { Navigate } from "react-router";
 
 const Homepage = () => {
+  useEffect(() => {
+    if (
+      localStorage.getItem("currentUser") &&
+      localStorage.getItem("userType")
+    ) {
+      if (localStorage.getItem("userType") === "restaurant") {
+        <Navigate to="/resturant/manage"></Navigate>;
+        window.location.href = "/resturant/manage";
+      } else if (localStorage.getItem("userType") === "customer") {
+        <Navigate to="/customer/manage"></Navigate>;
+        window.location.href = "customer/manage";
+      }
+    }
+  }, []);
+
   return (
     <>
       <img
@@ -16,18 +31,16 @@ const Homepage = () => {
         <Row>
           <Col md={12}>
             <div>
-              <h4>
+              <h4 className="mt-5">
                 Browse through our wide-range of resturants all over karachi
               </h4>
               <Row xs={1} md={12} className="g-4 m-3">
-                <ResturantProvider>
-                  <ResturantCollection></ResturantCollection>
-                </ResturantProvider>
+                <ResturantCollection></ResturantCollection>
               </Row>
             </div>
           </Col>
           <Col md={12} className="AccordationCollection">
-            <h4>Frequently Asked Question</h4>
+            <h4 className="mb-3">Frequently Asked Question</h4>
             <FAQ></FAQ>
           </Col>
         </Row>
