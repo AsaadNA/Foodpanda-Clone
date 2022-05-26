@@ -28,10 +28,14 @@ const CustomerHome = () => {
         Using the options below, you can order and check status of your orders
         on foodpanda
       </p>
-      <Row className="">
+      <Row>
         {options.map((option) => {
           return (
-            <Col md={6} key={option.id}>
+            <Col
+              md={6}
+              key={option.id}
+              className="d-flex justify-content-center align-items-center mb-2"
+            >
               <Card className="menu-card">
                 <Card.Img
                   variant="top"

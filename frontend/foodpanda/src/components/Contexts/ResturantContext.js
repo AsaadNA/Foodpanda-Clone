@@ -8,7 +8,7 @@ export const ResturantProvider = (props) => {
   const [Items, setItems] = useState([]);
 
   const fetchResturants = async () => {
-    await axios
+    axios
       .get("/api/restaurant")
       .then(function (response) {
         const resturants = response.data.data;
@@ -21,7 +21,7 @@ export const ResturantProvider = (props) => {
   };
 
   const fetchItems = async () => {
-    await axios
+    axios
       .get("/api/menu/items/PizzaHut")
       .then(function (response) {
         const items = response.data.data;
@@ -33,6 +33,71 @@ export const ResturantProvider = (props) => {
       });
   };
 
+  const addCategory = async (restaurantName, categoryName) => {
+    axios
+      .post(`/api/menu/category/${restaurantName}/${categoryName}`)
+      .then(function (response) {
+        console.log(response);
+      });
+  };
+  const addItem = async (
+    categoryName,
+    itemName,
+    itemDescription,
+    itemPrice
+  ) => {
+    console.log();
+    axios
+      .post("/api/menu/items", {
+        restaurantName: "PizzaHut",
+        categoryName: categoryName,
+        itemName: itemName,
+        itemPrice: itemPrice,
+        itemDescription: itemDescription,
+      })
+      .then(() => {
+        //Reason to use Fetch is to use we want to get updated values from all categories
+        fetchItems();
+      });
+  };
+
+  // const updateItem = async (
+  //   categoryName,
+  //   itemName,
+  //   itemDescription,
+  //   itemPrice
+  // ) => {
+  //   console.log();
+  //   axios
+  //     .post("/api/menu/items", {
+  //       restaurantName: "PizzaHut",
+  //       categoryName: categoryName,
+  //       itemName: itemName,
+  //       itemPrice: itemPrice,
+  //       itemDescription: itemDescription,
+  //     })
+  //     .then(() => {
+  //       //Reason to use Fetch is to use we want to get updated values from all categories
+  //       fetchItems();
+  //     });
+  // };
+
+  const deleteItem = async (categoryName, itemName) => {
+    console.log(categoryName, itemName);
+    axios
+      .delete("/api/menu/items", {
+        data: {
+          restaurantName: "PizzaHut",
+          categoryName: categoryName,
+          itemName: itemName,
+        },
+      })
+      .then(() => {
+        //Reason to use Fetch is to use we want to get updated values from all categories
+        fetchItems();
+      });
+  };
+
   useEffect(() => {
     fetchResturants();
     fetchItems();
@@ -40,7 +105,15 @@ export const ResturantProvider = (props) => {
 
   return (
     <ResturantContext.Provider
-      value={{ Resturants, setResturants, Items, setItems }}
+      value={{
+        Resturants,
+        setResturants,
+        Items,
+        setItems,
+        addCategory,
+        addItem,
+        deleteItem,
+      }}
     >
       {props.children}
     </ResturantContext.Provider>
