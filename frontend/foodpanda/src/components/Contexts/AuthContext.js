@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import jwtDecode from "jwt-decode";
 import axios from "../Api/Api";
 
 export const AuthContext = createContext();
@@ -10,21 +11,10 @@ export const AuthProvider = (props) => {
   const [loading, setloading] = useState(false);
 
   const logout = () => {
-    console.log("logout");
-    axios
-      .get("/api/auth/logout/")
-      .then((response) => {
-        // let token = response.data.token;
-        // console.log("==== " + token);
-        // localStorage.setItem("SavedToken", "Bearer " + token);
-        console.log(response);
-        localStorage.removeItem("userType");
-        localStorage.removeItem("currentUser");
-        window.location.href = "/";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    localStorage.removeItem("userType");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("SavedToken");
+    window.location.href = "/";
   };
 
   const loginResturant = (email, password, loginRoute) => {
@@ -34,12 +24,10 @@ export const AuthProvider = (props) => {
         password: password,
       })
       .then((response) => {
-        // let token = response.data.token;
-        // console.log("==== " + token);
-        // localStorage.setItem("SavedToken", "Bearer " + token);
+        let token = response.headers["x-auth-token"];
         setCurrentUser(true);
-        console.log(response.data);
         setuserType(response.data.data.userType);
+        localStorage.setItem("SavedToken", token);
         localStorage.setItem("currentUser", true);
         localStorage.setItem("userType", response.data.data.userType);
       })
@@ -54,9 +42,9 @@ export const AuthProvider = (props) => {
         password: password,
       })
       .then((response) => {
-        // let token = response.data.token;
-        // console.log("==== " + token);
-        // localStorage.setItem("SavedToken", "Bearer " + token);
+        let token = response.data.token;
+        token = jwtDecode(token);
+        localStorage.setItem("token", token.toString());
         setCurrentUser(true);
         console.log(response.data);
         setuserType(response.data.data.userType);

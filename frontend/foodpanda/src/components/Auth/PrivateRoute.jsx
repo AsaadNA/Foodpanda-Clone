@@ -4,8 +4,9 @@ import UnAuthorized from "./UnAuthorized";
 
 const PrivateRoute = ({ children, redirect, type }) => {
   const { currentUser, userType } = useContext(AuthContext);
-  if (currentUser && userType === type) {
-    console.log("Authorized", currentUser, userType);
+  let token = localStorage.getItem("SavedToken");
+  if (token && currentUser && userType === type) {
+    console.log("Authorized");
     return children;
   } else if (currentUser !== null) {
     console.log("UnAuthorized");
