@@ -25,9 +25,10 @@ export const AuthProvider = (props) => {
       })
       .then((response) => {
         let token = response.headers["x-auth-token"];
+        token = jwtDecode(token);
         setCurrentUser(true);
         setuserType(response.data.data.userType);
-        localStorage.setItem("SavedToken", token);
+        localStorage.setItem("SavedToken", token.toString());
         localStorage.setItem("currentUser", true);
         localStorage.setItem("userType", response.data.data.userType);
       })
@@ -42,12 +43,11 @@ export const AuthProvider = (props) => {
         password: password,
       })
       .then((response) => {
-        let token = response.data.token;
+        let token = response.headers["x-auth-token"];
         token = jwtDecode(token);
-        localStorage.setItem("token", token.toString());
         setCurrentUser(true);
-        console.log(response.data);
         setuserType(response.data.data.userType);
+        localStorage.setItem("SavedToken", token.toString());
         localStorage.setItem("currentUser", true);
         localStorage.setItem("userType", response.data.data.userType);
       })
