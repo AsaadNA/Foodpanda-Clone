@@ -16,4 +16,31 @@
   "password": "123456",
   "operatingArea": "Malir Cantonment",
   "__v": 0
+},{
+  "_id": {
+    "$oid": "62895b4d21aab9b9b503a3e7"
+  },
+  "restaurantName": "KFC",
+  "email": "kfc@gmail.com",
+  "password": "123456",
+  "operatingArea": "PECHS",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62896f0021aab9b9b503a71f"
+  },
+  "restaurantName": "Mc Donald's",
+  "email": "mcdonalds@gmail.com",
+  "password": "123456",
+  "operatingArea": "Clifton",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628a361421aab9b9b503bea1"
+  },
+  "restaurantName": "Chick & Chips",
+  "email": "ccs@gmail.com",
+  "password": "123456",
+  "operatingArea": "P.E.C.H.S",
+  "__v": 0
 }]

@@ -14,36 +14,27 @@
       }
     },
     {
-      "itemName": "Chicken Tikka",
-      "itemPrice": 1300,
+      "itemName": "Chicken Fajita",
+      "itemPrice": 1200,
       "itemDescription": "13 Inch Pizza",
       "_id": {
         "$oid": "6281290430a97e19b5433197"
       }
-    }
-  ],
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "62811326f94531976abcf28b"
-  },
-  "restaurantName": "PizzaHut",
-  "categoryName": "Pizza",
-  "items": [
+    },
     {
-      "itemName": "Pepsi",
-      "itemPrice": 70,
-      "itemDescription": "500ml pepsi",
+      "itemName": "Chicken Creamy ",
+      "itemPrice": 1250,
+      "itemDescription": "Chicken Creamy Best Pizza",
       "_id": {
-        "$oid": "6281295630a97e19b543319f"
+        "$oid": "628d60ef55e3547fd36ace4d"
       }
     },
     {
-      "itemName": "Coke",
-      "itemPrice": 70,
-      "itemDescription": "500ml coke",
+      "itemName": "Chicken Garlic",
+      "itemPrice": 1399,
+      "itemDescription": "Best Pizza",
       "_id": {
-        "$oid": "628129ee30a97e19b54331a4"
+        "$oid": "628d61e255e3547fd36ace63"
       }
     }
   ],
@@ -55,5 +46,30 @@
   "restaurantName": "PizzaHut",
   "categoryName": "Desert",
   "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628ecfeb35f6029909b03c75"
+  },
+  "restaurantName": "PizzaHut",
+  "categoryName": "Desi",
+  "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628fe3d757bca94027eae98b"
+  },
+  "restaurantName": "PizzaHut",
+  "categoryName": "Drinks",
+  "items": [
+    {
+      "itemName": "Pepsi",
+      "itemPrice": 70,
+      "itemDescription": "1.5 Liter Bottle",
+      "_id": {
+        "$oid": "628fe3e357bca94027eae98e"
+      }
+    }
+  ],
   "__v": 0
 }]
