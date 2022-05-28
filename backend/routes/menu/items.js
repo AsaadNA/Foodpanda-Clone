@@ -28,6 +28,50 @@ router.get("/:restaurantName", (req, res) => {
   );
 });
 
+router.put("/", (req, res) => {
+  const {
+    _id,
+    itemName,
+    itemPrice,
+    itemDescription,
+    categoryName,
+    restaurantName,
+  } = req.body;
+
+  const result = categorySchema.findOneAndUpdate(
+    {
+      categoryName,
+      restaurantName,
+    },
+    {
+      $set: {
+        "items.$[el].itemName": itemName,
+        "items.$[el].itemPrice": itemPrice,
+        "items.$[el].itemDescription": itemDescription,
+      },
+    },
+    {
+      arrayFilters: [{ "el._id": _id }],
+      new: true,
+    },
+    (err, data) => {
+      if (err) {
+        res.status(400).send({
+          error: "An Error Occured",
+        });
+      } else if (data === null) {
+        res.status(400).send({
+          error: "Could not find category or restaurant",
+        });
+      } else if (data) {
+        res.status(200).send({
+          data,
+        });
+      }
+    }
+  );
+});
+
 //POST through JSON
 //Insert new item
 router.post("/", (req, res) => {
