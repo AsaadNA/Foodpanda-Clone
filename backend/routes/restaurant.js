@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     } else if (data) {
       const fdata = data.map((d) => {
         return {
+          _id: d._id,
           restaurantName: d.restaurantName,
           operatingArea: d.operatingArea,
           operatingFees: d.operatingFees,
