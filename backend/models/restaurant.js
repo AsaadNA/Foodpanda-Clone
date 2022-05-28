@@ -20,6 +20,14 @@ const restaurantSchema = new mongoose.Schema({
   operatingArea: {
     type: String,
   },
+
+  operatingFees: {
+    type: Number,
+  },
+
+  cuisineType: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("restaurants", restaurantSchema);

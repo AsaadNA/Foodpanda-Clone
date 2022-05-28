@@ -53,11 +53,14 @@ router.post("/login/customer", (req, res) => {
 
 //Register a new customer
 router.post("/register/customer", async (req, res) => {
-  const { email, username, password } = req.body;
+  const { email, username, password, gender, age, address } = req.body;
   const newData = new customerSchema({
     email,
     password,
     username,
+    gender,
+    age,
+    address,
   });
 
   //Check for duplicate email
@@ -139,12 +142,21 @@ router.post("/login/restaurant", (req, res) => {
 
 //Register a new restaurant
 router.post("/register/restaurant", async (req, res) => {
-  const { email, restaurantName, password, operatingArea } = req.body;
+  const {
+    email,
+    restaurantName,
+    password,
+    operatingArea,
+    operatingFees,
+    cuisineType,
+  } = req.body;
   const newData = new restaurantSchema({
     email,
     password,
     restaurantName,
     operatingArea,
+    operatingFees,
+    cuisineType,
   });
 
   //Check for duplicate email

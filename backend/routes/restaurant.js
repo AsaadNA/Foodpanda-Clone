@@ -10,8 +10,17 @@ router.get("/", (req, res) => {
         error: "Some error occured",
       });
     } else if (data) {
+      const fdata = data.map((d) => {
+        return {
+          restaurantName: d.restaurantName,
+          operatingArea: d.operatingArea,
+          operatingFees: d.operatingFees,
+          cuisineType: d.cuisineType,
+        };
+      });
+
       res.status(200).send({
-        data,
+        data: fdata,
       });
     } else {
       res.status(400).send({
