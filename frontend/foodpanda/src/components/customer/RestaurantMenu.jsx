@@ -64,7 +64,7 @@ const RestaurantMenu = () => {
         itemDescription: itemDescription,
         itemQuantity: addedItems[id],
         itemCategory: itemCategory,
-        totalPrice: itemPrice * 1,
+        totalPrice: itemPrice * addedItems[id],
       });
       toggleNotification("Woohoo, Item has been added to cart!", "success");
     } else {

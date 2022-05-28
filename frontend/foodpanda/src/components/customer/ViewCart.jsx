@@ -11,31 +11,41 @@ const ViewCart = () => {
       <p>Following are the items you have added to the cart</p>
       <Row>
         <Col>
-          <Table>
-            <thead>
-              <tr>
-                <th>Items</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Items.map((Item) => {
-                return (
+          {Items ? (
+            <>
+              <Table>
+                <thead>
                   <tr>
-                    <td>{Item.itemName}</td>
-                    <td>{Item.itemQuantity}</td>
-                    <td>{Item.itemPrice}</td>
-                    <td>{Item.totalPrice}</td>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total Price</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-          <Button className="form-button" onClick={placeOrder}>
-            Confirm and Place Order
-          </Button>
+                </thead>
+                <tbody>
+                  {Items.map((Item, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>{Item.itemName}</td>
+                        <td>{Item.itemQuantity}</td>
+                        <td>Rs. {Item.itemPrice}</td>
+                        <td>Rs. {Item.totalPrice}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+              <Button className="form-button" onClick={placeOrder}>
+                Confirm and Place Order
+              </Button>
+            </>
+          ) : (
+            <img
+              src="https://www.no-fea.com/front/images/empty-cart.png"
+              alt="empty-cart"
+              width={"300px"}
+            ></img>
+          )}
         </Col>
       </Row>
     </Container>

@@ -32,7 +32,8 @@ function App() {
     ) {
       setCurrentUser(localStorage.getItem("currentUser"));
       setuserType(localStorage.getItem("userType"));
-      if (userType === "restaurant") {
+      if (userType === "customer") {
+      } else if (userType === "restaurant") {
         <Navigate to="/resturant/manage"></Navigate>;
       } else if (userType === "customer") {
         <Navigate to="/customer/manage"></Navigate>;
