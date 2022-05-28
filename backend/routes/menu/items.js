@@ -40,8 +40,8 @@ router.put("/", (req, res) => {
 
   const result = categorySchema.findOneAndUpdate(
     {
-      categoryName,
       restaurantName,
+      categoryName,
     },
     {
       $set: {
@@ -75,12 +75,12 @@ router.put("/", (req, res) => {
 //POST through JSON
 //Insert new item
 router.post("/", (req, res) => {
-  const { restrauntName, categoryName, itemPrice, itemName, itemDescription } =
+  const { restaurantName, categoryName, itemPrice, itemName, itemDescription } =
     req.body;
   let result = categorySchema.findOneAndUpdate(
     {
+      restaurantName,
       categoryName,
-      restrauntName,
     },
     {
       $push: {
@@ -117,8 +117,8 @@ router.delete("/", (req, res) => {
   const { restaurantName, categoryName, itemName } = req.body;
   const result = categorySchema.findOneAndUpdate(
     {
-      categoryName,
       restaurantName,
+      categoryName,
     },
     {
       $pull: {
