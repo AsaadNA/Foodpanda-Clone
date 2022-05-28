@@ -25,10 +25,10 @@ router.post("/login/customer", (req, res) => {
           res.setHeader("x-auth-token", token);
           res.status(200).send({
             message: "Successfully logged in and session created",
-            data: {
+            /* data: {
               username: username,
               userType: "customer",
-            },
+            }, */
           });
         } else {
           //Invalid Password
@@ -77,7 +77,7 @@ router.post("/register/customer", async (req, res) => {
         } else if (data) {
           res.status(200).send({
             message: "Successfully registered the user",
-            data: newData,
+            /*data: newData, */
           });
         }
       });
@@ -113,11 +113,11 @@ router.post("/login/restaurant", (req, res) => {
           res.setHeader("x-auth-token", token);
           res.status(200).send({
             message: "Successfully logged in and session created",
-            data: {
+            /*data: {
               email,
               userType: "restaurant",
-              restaurantName: user.restaurantName,
-            },
+              restaurantName: user.restaurantName, 
+            },*/
           });
         } else {
           //Invalid Password
@@ -173,7 +173,7 @@ router.post("/register/restaurant", async (req, res) => {
         } else if (data) {
           res.status(200).send({
             message: "Successfully registered the restaurant",
-            data: newData,
+            /*  data: newData, */
           });
         }
       });
