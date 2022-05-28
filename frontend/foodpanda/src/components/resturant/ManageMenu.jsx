@@ -9,6 +9,7 @@ const ManageMenu = () => {
     updateCategory,
     deleteCategory,
     addItem,
+    updateItem,
     deleteItem,
   } = useContext(ResturantContext);
 
@@ -17,6 +18,7 @@ const ManageMenu = () => {
 
   const [Category, setCategory] = useState("");
 
+  const [Id, setId] = useState("");
   const [CategoryName, setCategoryName] = useState("");
   const [ItemName, setItemName] = useState("");
   const [ItemDescription, setItemDescription] = useState("");
@@ -24,6 +26,7 @@ const ManageMenu = () => {
 
   const selectRow = (category, item) => {
     console.log(category, item);
+    setId(item._id);
     setCategoryName(category);
     setItemDescription(item.itemDescription);
     setItemName(item.itemName);
@@ -43,6 +46,28 @@ const ManageMenu = () => {
       e.stopPropagation();
     }
     addItem(CategoryName, ItemName, ItemDescription, ItemPrice);
+    e.preventDefault();
+    setCategoryName("");
+    setItemDescription("");
+    setItemName("");
+    setItemPrice("");
+    setvalidatedItemForm(true);
+    document.getElementById("item-form").reset();
+  };
+  const handleItemUpdate = (
+    e,
+    id,
+    CategoryName,
+    ItemName,
+    ItemDescription,
+    ItemPrice
+  ) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    updateItem(id, CategoryName, ItemName, ItemDescription, ItemPrice);
     e.preventDefault();
     setCategoryName("");
     setItemDescription("");
@@ -268,7 +293,21 @@ const ManageMenu = () => {
                 >
                   Add Item
                 </Button>
-                <Button className="crud-button">Update Item</Button>
+                <Button
+                  className="crud-button"
+                  onClick={(event) => {
+                    handleItemUpdate(
+                      event,
+                      Id,
+                      CategoryName,
+                      ItemName,
+                      ItemDescription,
+                      ItemPrice
+                    );
+                  }}
+                >
+                  Update Item
+                </Button>
                 <Button
                   className="crud-button text-light"
                   onClick={(event) =>

@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./components/Contexts/AuthContext";
 import { ResturantProvider } from "./components/Contexts/ResturantContext";
+import { UserProvider } from "./components/Contexts/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
       <ResturantProvider>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </ResturantProvider>
     </AuthProvider>
   </React.StrictMode>

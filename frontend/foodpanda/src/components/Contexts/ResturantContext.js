@@ -6,7 +6,6 @@ export const ResturantContext = createContext();
 export const ResturantProvider = (props) => {
   const [Resturants, setResturants] = useState([]);
   const [Items, setItems] = useState([]);
-
   const fetchResturants = async () => {
     axios
       .get("/api/restaurant")
@@ -17,11 +16,12 @@ export const ResturantProvider = (props) => {
       })
       .catch(function (error) {
         console.log(error);
+        setResturants([]);
       });
   };
   const fetchItems = async () => {
     axios
-      .get("/api/menu/items/PizzaHut")
+      .get(`/api/menu/items/${window.localStorage.getItem("restaurantName")}`)
       .then(function (response) {
         const items = response.data.data;
         setItems(items);
@@ -29,12 +29,17 @@ export const ResturantProvider = (props) => {
       })
       .catch(function (error) {
         console.log(error);
+        setItems([]);
       });
   };
 
   const addCategory = async (categoryName) => {
     axios
-      .post(`/api/menu/category/PizzaHut/${categoryName}`)
+      .post(
+        `/api/menu/category/${window.localStorage.getItem(
+          "restaurantName"
+        )}/${categoryName}`
+      )
       .then(function (response) {
         console.log(response);
       });
@@ -49,7 +54,11 @@ export const ResturantProvider = (props) => {
   };
   const deleteCategory = async (categoryName) => {
     axios
-      .delete(`/api/menu/category/PizzaHut/${categoryName}`)
+      .delete(
+        `/api/menu/category/${window.localStorage.getItem(
+          "restaurantName"
+        )}/${categoryName}`
+      )
       .then(function (response) {
         console.log(response);
         fetchItems();
@@ -63,7 +72,32 @@ export const ResturantProvider = (props) => {
   ) => {
     axios
       .post("/api/menu/items", {
-        restaurantName: "PizzaHut",
+        restaurantName: window.localStorage
+          .getItem("restaurantName")
+          .toString(),
+        categoryName: categoryName,
+        itemName: itemName,
+        itemPrice: itemPrice,
+        itemDescription: itemDescription,
+      })
+      .then(() => {
+        //Reason to use Fetch is to use we want to get updated values from all categories
+        fetchItems();
+      });
+  };
+  const updateItem = async (
+    id,
+    categoryName,
+    itemName,
+    itemDescription,
+    itemPrice
+  ) => {
+    axios
+      .put("/api/menu/items", {
+        _id: id,
+        restaurantName: window.localStorage
+          .getItem("restaurantName")
+          .toString(),
         categoryName: categoryName,
         itemName: itemName,
         itemPrice: itemPrice,
@@ -80,7 +114,9 @@ export const ResturantProvider = (props) => {
     axios
       .delete("/api/menu/items", {
         data: {
-          restaurantName: "PizzaHut",
+          restaurantName: window.localStorage
+            .getItem("restaurantName")
+            .toString(),
           categoryName: categoryName,
           itemName: itemName,
         },
@@ -103,11 +139,13 @@ export const ResturantProvider = (props) => {
         setResturants,
         Items,
         setItems,
+        updateItem,
         addCategory,
         deleteCategory,
         updateCategory,
         addItem,
         deleteItem,
+        fetchItems,
       }}
     >
       {props.children}

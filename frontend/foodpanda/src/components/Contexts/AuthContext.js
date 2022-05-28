@@ -26,11 +26,13 @@ export const AuthProvider = (props) => {
       .then((response) => {
         let token = response.headers["x-auth-token"];
         token = jwtDecode(token);
+        console.log(token);
         setCurrentUser(true);
-        setuserType(response.data.data.userType);
+        setuserType(token.userType);
         localStorage.setItem("SavedToken", token.toString());
         localStorage.setItem("currentUser", true);
-        localStorage.setItem("userType", response.data.data.userType);
+        localStorage.setItem("restaurantName", token.restaurantName);
+        localStorage.setItem("userType", token.userType);
       })
       .catch((error) => {
         console.log(error);
@@ -46,10 +48,11 @@ export const AuthProvider = (props) => {
         let token = response.headers["x-auth-token"];
         token = jwtDecode(token);
         setCurrentUser(true);
-        setuserType(response.data.data.userType);
+        setuserType(token.userType);
         localStorage.setItem("SavedToken", token.toString());
         localStorage.setItem("currentUser", true);
-        localStorage.setItem("userType", response.data.data.userType);
+        localStorage.setItem("username", token.username);
+        localStorage.setItem("userType", token.userType);
       })
       .catch((error) => {
         console.log(error);

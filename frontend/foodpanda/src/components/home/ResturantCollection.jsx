@@ -21,7 +21,8 @@ const responsive = {
 };
 
 const ResturantCollection = ({ showMenu }) => {
-  const { Resturants, setResturants } = useContext(ResturantContext);
+  const { Resturants, setResturants, fetchItems } =
+    useContext(ResturantContext);
 
   return (
     <div>
@@ -39,7 +40,9 @@ const ResturantCollection = ({ showMenu }) => {
                   <Card.Title>
                     {Resturant.restaurantName}
                     <br></br>
-                    <span style={{ fontSize: "15px" }}>Chinese</span>
+                    <span style={{ fontSize: "15px" }}>
+                      {Resturant.cuisineType}
+                    </span>
                   </Card.Title>
                   {showMenu ? (
                     <>
@@ -47,12 +50,20 @@ const ResturantCollection = ({ showMenu }) => {
                       <Card.Text>
                         {Resturant.operatingArea}
                         <p>
-                          <strong>Rs. 67</strong> Delivery fee
+                          <strong>Rs. {Resturant.operatingFees}</strong>{" "}
+                          Delivery fee
                         </p>
                       </Card.Text>
                       <LinkContainer
                         to={Resturant.restaurantName}
                         className="btn-primary order-button text-center"
+                        onClick={() => {
+                          window.localStorage.setItem(
+                            "restaurantName",
+                            Resturant.restaurantName.toString()
+                          );
+                          fetchItems();
+                        }}
                       >
                         <Nav.Link>View Restaurant</Nav.Link>
                       </LinkContainer>
