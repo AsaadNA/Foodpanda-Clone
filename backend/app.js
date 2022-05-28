@@ -8,6 +8,8 @@ const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/menu/categories");
 const itemRoutes = require("./routes/menu/items");
 const restaurantRoutes = require("./routes/restaurant");
+const orderRoutes = require("./routes/order");
+
 dotenv.config();
 
 const app = express();
@@ -33,6 +35,7 @@ app.use("/api/auth/", authRoutes);
 app.use("/api/menu/category/", categoryRoutes);
 app.use("/api/menu/items/", itemRoutes);
 app.use("/api/restaurant/", restaurantRoutes);
+app.use("/api/orders/", orderRoutes);
 
 app.get("*", (req, res) => {
   res.status(404).send({
