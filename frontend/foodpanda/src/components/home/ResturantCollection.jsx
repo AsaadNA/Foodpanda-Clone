@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
 import { Card, Nav } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
@@ -21,8 +21,7 @@ const responsive = {
 };
 
 const ResturantCollection = ({ showMenu }) => {
-  const { Resturants, setResturants, fetchItems } =
-    useContext(ResturantContext);
+  const { Resturants, fetchItems } = useContext(ResturantContext);
 
   let getImage = () => {
     const links = [
