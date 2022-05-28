@@ -1,8 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
-import { Card } from "react-bootstrap";
+import { Card, Nav } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
 import { ResturantContext } from "../Contexts/ResturantContext";
+import { LinkContainer } from "react-router-bootstrap";
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -18,7 +20,7 @@ const responsive = {
   },
 };
 
-const ResturantCollection = () => {
+const ResturantCollection = ({ showMenu }) => {
   const { Resturants, setResturants } = useContext(ResturantContext);
 
   return (
@@ -39,13 +41,23 @@ const ResturantCollection = () => {
                     <br></br>
                     <span style={{ fontSize: "15px" }}>Chinese</span>
                   </Card.Title>
-                  <hr></hr>
-                  <Card.Text>
-                    {Resturant.operatingArea}
-                    <p>
-                      <strong>Rs. 67</strong> Delivery fee
-                    </p>
-                  </Card.Text>
+                  {showMenu ? (
+                    <>
+                      <hr></hr>
+                      <Card.Text>
+                        {Resturant.operatingArea}
+                        <p>
+                          <strong>Rs. 67</strong> Delivery fee
+                        </p>
+                      </Card.Text>
+                      <LinkContainer
+                        to={Resturant.restaurantName}
+                        className="btn-primary order-button text-center"
+                      >
+                        <Nav.Link>View Restaurant</Nav.Link>
+                      </LinkContainer>
+                    </>
+                  ) : null}
                 </Card.Body>
               </Card>
             </div>

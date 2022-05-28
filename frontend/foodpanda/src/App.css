@@ -18,6 +18,13 @@
   border: none !important;
   background-color: #f7f7f7 !important;
 }
+.order-button{
+  color: #D70F64 !important;
+  width: 100%;
+  outline: none;
+  border: none !important;
+  background-color: #f7f7f7 !important;
+}
 .crud-button{  
   background-color: #D70F64 !important;
   outline: none;

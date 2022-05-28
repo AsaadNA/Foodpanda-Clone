@@ -22,7 +22,7 @@ const CustomerHome = () => {
     },
   ];
   return (
-    <Container className=" mt-5 d-flex flex-column justify-content-center align-items-center">
+    <Container className="mt-5 d-flex flex-column justify-content-center align-items-center">
       <h3>Place Orders and View Orders</h3>
       <p>
         Using the options below, you can order and check status of your orders

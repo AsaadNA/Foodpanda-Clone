@@ -14,14 +14,16 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import { AuthContext } from "./components/Contexts/AuthContext";
-import { useNavigate, Navigate } from "react-router";
+import { useParams, Navigate } from "react-router";
 import { useContext, useEffect } from "react";
 import ViewOrders from "./components/customer/ViewOrders";
 import PlaceOrder from "./components/customer/PlaceOrder";
+import RestaurantMenu from "./components/customer/RestaurantMenu";
 
 function App() {
   const { currentUser, userType, setCurrentUser, setuserType } =
     useContext(AuthContext);
+
   useEffect(() => {
     if (
       localStorage.getItem("currentUser") &&
@@ -93,6 +95,14 @@ function App() {
             element={
               <PrivateRoute redirect="/login" type="customer">
                 <PlaceOrder></PlaceOrder>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/customer/manage/order/:restaurantName"
+            element={
+              <PrivateRoute redirect="/login" type="customer">
+                <RestaurantMenu></RestaurantMenu>
               </PrivateRoute>
             }
           />

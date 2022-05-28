@@ -19,7 +19,6 @@ export const ResturantProvider = (props) => {
         console.log(error);
       });
   };
-
   const fetchItems = async () => {
     axios
       .get("/api/menu/items/PizzaHut")
@@ -33,11 +32,27 @@ export const ResturantProvider = (props) => {
       });
   };
 
-  const addCategory = async (restaurantName, categoryName) => {
+  const addCategory = async (categoryName) => {
     axios
-      .post(`/api/menu/category/${restaurantName}/${categoryName}`)
+      .post(`/api/menu/category/PizzaHut/${categoryName}`)
       .then(function (response) {
         console.log(response);
+      });
+  };
+  const updateCategory = async (categoryName) => {
+    // axios
+    //   .put(`/api/menu/category/PizzaHut/${categoryName}`)
+    //   .then(function (response) {
+    //     console.log(response);
+    //     fetchItems();
+    //   });
+  };
+  const deleteCategory = async (categoryName) => {
+    axios
+      .delete(`/api/menu/category/PizzaHut/${categoryName}`)
+      .then(function (response) {
+        console.log(response);
+        fetchItems();
       });
   };
   const addItem = async (
@@ -46,7 +61,6 @@ export const ResturantProvider = (props) => {
     itemDescription,
     itemPrice
   ) => {
-    console.log();
     axios
       .post("/api/menu/items", {
         restaurantName: "PizzaHut",
@@ -60,27 +74,6 @@ export const ResturantProvider = (props) => {
         fetchItems();
       });
   };
-
-  // const updateItem = async (
-  //   categoryName,
-  //   itemName,
-  //   itemDescription,
-  //   itemPrice
-  // ) => {
-  //   console.log();
-  //   axios
-  //     .post("/api/menu/items", {
-  //       restaurantName: "PizzaHut",
-  //       categoryName: categoryName,
-  //       itemName: itemName,
-  //       itemPrice: itemPrice,
-  //       itemDescription: itemDescription,
-  //     })
-  //     .then(() => {
-  //       //Reason to use Fetch is to use we want to get updated values from all categories
-  //       fetchItems();
-  //     });
-  // };
 
   const deleteItem = async (categoryName, itemName) => {
     console.log(categoryName, itemName);
@@ -111,6 +104,8 @@ export const ResturantProvider = (props) => {
         Items,
         setItems,
         addCategory,
+        deleteCategory,
+        updateCategory,
         addItem,
         deleteItem,
       }}
