@@ -1,15 +1,23 @@
-import React, { useContext, useState, s } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Table, Form, Button } from "react-bootstrap";
 import { ResturantContext } from "../Contexts/ResturantContext";
 
 const ManageMenu = () => {
-  const { Items, addCategory, addItem, deleteItem } =
-    useContext(ResturantContext);
+  const {
+    Items,
+    addCategory,
+    updateCategory,
+    deleteCategory,
+    addItem,
+    deleteItem,
+  } = useContext(ResturantContext);
 
   const [validatedItemForm, setvalidatedItemForm] = useState(false);
   const [validatedCategoryForm, setvalidatedCategoryForm] = useState(false);
-  const [CategoryName, setCategoryName] = useState("");
 
+  const [Category, setCategory] = useState("");
+
+  const [CategoryName, setCategoryName] = useState("");
   const [ItemName, setItemName] = useState("");
   const [ItemDescription, setItemDescription] = useState("");
   const [ItemPrice, setItemPrice] = useState("");
@@ -58,15 +66,41 @@ const ManageMenu = () => {
     setvalidatedItemForm(true);
     document.getElementById("item-form").reset();
   };
-  const handleCategoryInsertion = (e, RestaurantName, CategoryName) => {
+  const handleCategoryInsertion = (e, CategoryName) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-    addCategory(RestaurantName, CategoryName);
+    addCategory(CategoryName);
     e.preventDefault();
-    setCategoryName("");
+    setCategory("");
+    setvalidatedCategoryForm(true);
+    document.getElementById("category-form").reset();
+  };
+
+  const handleCategoryUpdatation = (e, CategoryName) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    updateCategory(CategoryName);
+    e.preventDefault();
+    setCategory("");
+    setvalidatedCategoryForm(true);
+    document.getElementById("category-form").reset();
+  };
+
+  const handleCategoryDeletion = (e, CategoryName) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    deleteCategory(CategoryName);
+    e.preventDefault();
+    setCategory("");
     setvalidatedCategoryForm(true);
     document.getElementById("category-form").reset();
   };
@@ -95,7 +129,7 @@ const ManageMenu = () => {
                 <Form.Control
                   type="text"
                   placeholder="Ex. Drinks"
-                  onChange={(e) => setCategoryName(e.target.value)}
+                  onChange={(e) => setCategory(e.target.value)}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
@@ -108,14 +142,22 @@ const ManageMenu = () => {
               <Form.Group className="mt-3 d-flex justify-content-around">
                 <Button
                   className="crud-button"
-                  onClick={(event) =>
-                    handleCategoryInsertion(event, "PizzaHut", CategoryName)
-                  }
+                  onClick={(event) => handleCategoryInsertion(event, Category)}
                 >
                   Add Category
                 </Button>
-                <Button className="crud-button">Update Category</Button>
-                <Button className="crud-button">Delete Category</Button>
+                <Button
+                  className="crud-button"
+                  onClick={(event) => handleCategoryUpdatation(event, Category)}
+                >
+                  Update Category
+                </Button>
+                <Button
+                  className="crud-button"
+                  onClick={(event) => handleCategoryDeletion(event, Category)}
+                >
+                  Delete Category
+                </Button>
               </Form.Group>
             </Form>
           </Row>
