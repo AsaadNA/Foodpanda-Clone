@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import { Card, Nav } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
@@ -24,6 +24,17 @@ const ResturantCollection = ({ showMenu }) => {
   const { Resturants, setResturants, fetchItems } =
     useContext(ResturantContext);
 
+  let getImage = () => {
+    const links = [
+      "https://images.deliveryhero.io/image/fd-pk/LH/w2uc-listing.jpg",
+      "https://images.saymedia-content.com/.image/t_share/MTc0Mzc4NTY2MjIwNjUzOTI4/best-burger-restaurant-names.jpg",
+      "https://media.timeout.com/images/105865124/750/422/image.jpg",
+      "https://media-cdn.tripadvisor.com/media/photo-s/07/43/7b/37/cover-photo-album-cover.jpg",
+      "https://static.tossdown.com/images/7125a10499ff1d99aa7cfbbc91cf2278.jpg",
+    ];
+    return links[Math.floor(Math.random() * 4)];
+  };
+
   return (
     <div>
       <Carousel responsive={responsive} style={{ width: "100%" }}>
@@ -31,11 +42,7 @@ const ResturantCollection = ({ showMenu }) => {
           return (
             <div key={Resturant._id}>
               <Card className="card" style={{ margin: "10px" }}>
-                <Card.Img
-                  variant="top"
-                  src="https://images.deliveryhero.io/image/fd-pk/LH/w2uc-listing.jpg"
-                  height={250}
-                />
+                <Card.Img variant="top" src={getImage()} height={250} />
                 <Card.Body className="cardBody">
                   <Card.Title>
                     {Resturant.restaurantName}
@@ -48,11 +55,9 @@ const ResturantCollection = ({ showMenu }) => {
                     <>
                       <hr></hr>
                       <Card.Text>
-                        {Resturant.operatingArea}
-                        <p>
-                          <strong>Rs. {Resturant.operatingFees}</strong>{" "}
-                          Delivery fee
-                        </p>
+                        <p>{Resturant.operatingArea}</p>
+                        <strong>Rs. {Resturant.operatingFees}</strong> Delivery
+                        fee
                       </Card.Text>
                       <LinkContainer
                         to={Resturant.restaurantName}
