@@ -1,26 +1,22 @@
 const express = require("express");
 const session = require("express-session");
-const path = require("path");
+const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
-const axios = require("axios");
 
 const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/menu/categories");
 const itemRoutes = require("./routes/menu/items");
 const restaurantRoutes = require("./routes/restaurant");
-
-const DB_STRING =
-  "mongodb://localhost:27017/foodpandaClone?readPreference=primary&ssl=false";
+dotenv.config();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+const corsOptions = {
+  exposedHeaders: "x-auth-token",
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -38,36 +34,25 @@ app.use("/api/menu/category/", categoryRoutes);
 app.use("/api/menu/items/", itemRoutes);
 app.use("/api/restaurant/", restaurantRoutes);
 
-/*
-//DISPLAYING MENU API
-app.get("/:restaurantName", async (req, res, next) => {
-  try {
-    const result = await axios.get(
-      "http://localhost:3000/api/menu/items/" + req.params.restaurantName
-    );
-    //   console.log(result.data.data);
-    res.render("displayOrders", {
-      data: result.data.data,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-*/
-
 app.get("*", (req, res) => {
   res.status(404).send({
     error: "Invalid Request To The API",
   });
 });
 
-mongoose.connect(DB_STRING, (err) => {
+app.listen(process.env.API_PORT, (err) => {
   if (err) {
-    console.log("Error occurred while connecting to database", err);
+    console.error("Error occured while connecting to server", err);
   } else {
-    console.log("Connected to Database Successfully");
-    app.listen(4000, () => {
-      console.log("Connected to Server Successfully");
+    console.log("Connected to server Successfully !");
+    console.log("Trying to connect to database server..");
+
+    mongoose.connect(process.env.DB_CONNECTION_STRING, (dbError) => {
+      if (dbError) {
+        console.error("Error Occured while connecting to database");
+      } else {
+        console.log("Connected to Database Successfully");
+      }
     });
   }
 });

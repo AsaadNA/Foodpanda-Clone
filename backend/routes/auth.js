@@ -1,44 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 const customerSchema = require("../models/customer");
 const restaurantSchema = require("../models/restaurant");
-
-//Get current session
-router.get("/login/", (req, res) => {
-  if (req.session.userType === "customer") {
-    res.status(200).send({
-      message: "Customer still in session",
-      data: {
-        username: req.session.username,
-        userType: req.session.userType,
-      },
-    });
-  } else if (req.session.userType === "restaurant") {
-    res.status(200).send({
-      message: "Restaurant still in session",
-      data: {
-        email: req.session.email,
-        userType: req.session.userType,
-      },
-    });
-  } else {
-    res.status(400).send({
-      error: "User is not in session",
-    });
-  }
-});
-
-//Logout & Destroy session
-router.get("/logout/", (req, res) => {
-  req.session.destroy((err) => {
-    if (!err) {
-      res.status(200).send({
-        message: "User logged out",
-      });
-    }
-  });
-});
 
 /* #######  CUSTOMER ####### */
 
@@ -49,18 +14,24 @@ router.post("/login/customer", (req, res) => {
     if (!err) {
       if (user) {
         if (user.password === password) {
-          //Create a new session
-          req.session.username = username;
-          req.session.userType = "customer";
+          const token = jwt.sign(
+            JSON.stringify({
+              username: username,
+              userType: "customer",
+            }),
+            process.env.ACCESS_TOKEN_JWT
+          );
+
+          res.setHeader("x-auth-token", token);
           res.status(200).send({
             message: "Successfully logged in and session created",
             data: {
-              username: req.session.username,
-              userType: req.session.userType,
+              username: username,
+              userType: "customer",
             },
           });
         } else {
-          //INvalid Password
+          //Invalid Password
           res.status(400).send({
             error: "Invalid password",
           });
@@ -128,18 +99,25 @@ router.post("/login/restaurant", (req, res) => {
     if (!err) {
       if (user) {
         if (user.password === password) {
-          //Create a new session
-          req.session.email = email;
-          req.session.userType = "restaurant";
+          const token = jwt.sign(
+            JSON.stringify({
+              email,
+              userType: "restaurant",
+              restaurantName: user.restaurantName,
+            }),
+            process.env.ACCESS_TOKEN_JWT
+          );
+          res.setHeader("x-auth-token", token);
           res.status(200).send({
             message: "Successfully logged in and session created",
             data: {
-              email: req.session.email,
-              userType: req.session.userType,
+              email,
+              userType: "restaurant",
+              restaurantName: user.restaurantName,
             },
           });
         } else {
-          //INvalid Password
+          //Invalid Password
           res.status(400).send({
             error: "Invalid password",
           });
