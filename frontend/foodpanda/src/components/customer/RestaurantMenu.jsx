@@ -106,7 +106,7 @@ const RestaurantMenu = () => {
                         variant="top"
                         className="p-2"
                         style={{ height: "200px", width: "250px" }}
-                        src="https://www.nicepng.com/png/full/123-1230120_pizza-hut-logo-png-logo-pizza-hut-2017.png"
+                        src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-hand-drawn-fast-food-doodle-vector-set-of-fast-food-vector-png-image_2046737.jpg"
                       />
                       <Card.Body>
                         <Card.Title>{dish.itemName}</Card.Title>

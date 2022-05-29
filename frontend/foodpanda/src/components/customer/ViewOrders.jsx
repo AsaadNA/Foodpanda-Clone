@@ -11,7 +11,7 @@ const ViewOrders = () => {
       <p>Following are the orders you have placed to foodpanda</p>
       <Row>
         <Col>
-          {Orders ? (
+          {Orders.length > 0 ? (
             <>
               <Table responsive>
                 <thead>

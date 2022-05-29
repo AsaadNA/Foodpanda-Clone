@@ -18,6 +18,10 @@ export const UserProvider = (props) => {
       .get(`api/orders/customer/${window.localStorage.getItem("username")}`)
       .then(function (response) {
         setOrders(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setOrders([]);
       });
   };
   const placeOrder = () => {

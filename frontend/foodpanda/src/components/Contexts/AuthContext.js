@@ -12,21 +12,27 @@ export const AuthProvider = (props) => {
 
   const logout = () => {
     localStorage.removeItem("userType");
+    localStorage.removeItem("restaurantName");
+    localStorage.removeItem("username");
     localStorage.removeItem("currentUser");
     localStorage.removeItem("SavedToken");
+    localStorage.removeItem("Items");
     window.location.href = "/";
   };
 
   const loginResturant = (email, password, loginRoute) => {
+    setloading(true);
     axios
       .post(loginRoute, {
         email: email,
         password: password,
       })
       .then((response) => {
+        setloading(false);
         let token = response.headers["x-auth-token"];
         token = jwtDecode(token);
         console.log(token);
+        setToken(token);
         setCurrentUser(true);
         setuserType(token.userType);
         localStorage.setItem("SavedToken", token.toString());
@@ -36,9 +42,11 @@ export const AuthProvider = (props) => {
       })
       .catch((error) => {
         console.log(error);
+        setloading(false);
       });
   };
   const loginCustomer = (username, password, loginRoute) => {
+    setloading(true);
     axios
       .post(loginRoute, {
         username: username,
@@ -53,9 +61,11 @@ export const AuthProvider = (props) => {
         localStorage.setItem("currentUser", true);
         localStorage.setItem("username", token.username);
         localStorage.setItem("userType", token.userType);
+        setloading(false);
       })
       .catch((error) => {
         console.log(error);
+        setloading(false);
       });
   };
   return (

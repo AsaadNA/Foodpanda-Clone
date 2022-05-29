@@ -5,6 +5,7 @@ export const ResturantContext = createContext();
 
 export const ResturantProvider = (props) => {
   const [Resturants, setResturants] = useState([]);
+  const [Orders, setOrders] = useState([]);
   const [Items, setItems] = useState([]);
   const fetchResturants = async () => {
     axios
@@ -17,6 +18,20 @@ export const ResturantProvider = (props) => {
       .catch(function (error) {
         console.log(error);
         setResturants([]);
+      });
+  };
+  const fetchOrders = () => {
+    axios
+      .get(
+        `api/orders/restaurant/${window.localStorage.getItem("restaurantName")}`
+      )
+      .then(function (response) {
+        setOrders(response.data.data);
+        console.log(Orders);
+      })
+      .catch((error) => {
+        console.log(error);
+        setOrders([]);
       });
   };
   const fetchItems = async () => {
@@ -126,8 +141,21 @@ export const ResturantProvider = (props) => {
         fetchItems();
       });
   };
+  const removeOrder = async (id) => {
+    axios
+      .delete("/api/orders/", {
+        data: {
+          _id: id,
+        },
+      })
+      .then(() => {
+        //Reason to use Fetch is to use we want to get updated values from all categories
+        fetchOrders();
+      });
+  };
 
   useEffect(() => {
+    fetchOrders();
     fetchResturants();
     fetchItems();
   }, []);
@@ -146,6 +174,8 @@ export const ResturantProvider = (props) => {
         addItem,
         deleteItem,
         fetchItems,
+        Orders,
+        removeOrder,
       }}
     >
       {props.children}
