@@ -10,16 +10,6 @@ export const AuthProvider = (props) => {
   const [userType, setuserType] = useState(null);
   const [loading, setloading] = useState(false);
 
-  const logout = () => {
-    localStorage.removeItem("userType");
-    localStorage.removeItem("restaurantName");
-    localStorage.removeItem("username");
-    localStorage.removeItem("currentUser");
-    localStorage.removeItem("SavedToken");
-    localStorage.removeItem("Items");
-    window.location.href = "/";
-  };
-
   const loginResturant = (email, password, loginRoute) => {
     setloading(true);
     axios
@@ -67,6 +57,15 @@ export const AuthProvider = (props) => {
         console.log(error);
         setloading(false);
       });
+  };
+  const logout = () => {
+    localStorage.removeItem("userType");
+    localStorage.removeItem("restaurantName");
+    localStorage.removeItem("username");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("SavedToken");
+    localStorage.removeItem("Items");
+    window.location.href = "/";
   };
   return (
     <div>

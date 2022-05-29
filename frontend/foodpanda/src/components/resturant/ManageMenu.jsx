@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Container, Row, Col, Table, Form, Button } from "react-bootstrap";
 import { ResturantContext } from "../Contexts/ResturantContext";
 
@@ -33,6 +33,7 @@ const ManageMenu = () => {
     setItemPrice(item.itemPrice);
   };
 
+  const formRef = useRef();
   const handleItemInsertion = (
     e,
     CategoryName,
@@ -40,19 +41,20 @@ const ManageMenu = () => {
     ItemDescription,
     ItemPrice
   ) => {
-    const form = e.currentTarget;
+    const form = formRef.current;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+    } else {
+      addItem(CategoryName, ItemName, ItemDescription, ItemPrice);
+      e.preventDefault();
+      setCategoryName("");
+      setItemDescription("");
+      setItemName("");
+      setItemPrice("");
+      setvalidatedItemForm(true);
+      form.reset();
     }
-    addItem(CategoryName, ItemName, ItemDescription, ItemPrice);
-    e.preventDefault();
-    setCategoryName("");
-    setItemDescription("");
-    setItemName("");
-    setItemPrice("");
-    setvalidatedItemForm(true);
-    document.getElementById("item-form").reset();
   };
   const handleItemUpdate = (
     e,
@@ -187,7 +189,7 @@ const ManageMenu = () => {
             </Form>
           </Row>
           <Row>
-            <Form noValidate validated={validatedItemForm} id="item-form">
+            <Form validated={validatedItemForm} ref={formRef} id="item-form">
               <Form.Group
                 className="mt-3"
                 controlId="itemName"

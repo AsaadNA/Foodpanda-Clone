@@ -1,41 +1,15 @@
-import React, { useContext, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  Button,
-  ToastContainer,
-  Toast,
-} from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import { UserContext } from "../Contexts/UserContext";
 
 const ViewOrders = () => {
   const { Orders } = useContext(UserContext);
-  const [ShowNotification, setShowNotification] = useState(false);
   console.log(Orders);
-
-  const toggleNotification = () => {
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 2000);
-  };
 
   return (
     <Container className="mt-5">
       <h3>Your Orders</h3>
       <p>Following are the orders you have placed to foodpanda</p>
-      <ToastContainer position="top-end" style={{ marginTop: "70px" }}>
-        <Toast show={ShowNotification} bg="success" className="text-light">
-          <Toast.Header>
-            <strong className="me-auto">Notifcation</strong>
-          </Toast.Header>
-          <Toast.Body>
-            Cancellation request has been sent to the restaurant
-          </Toast.Body>
-        </Toast>
-      </ToastContainer>
       <Row>
         <Col>
           {Orders.length > 0 ? (
@@ -72,14 +46,6 @@ const ViewOrders = () => {
                           })}
                         </td>
                         <td>Rs. {Order.totalAmount}</td>
-                        <td>
-                          <Button
-                            variant="danger"
-                            onClick={() => toggleNotification()}
-                          >
-                            Cancel Order
-                          </Button>
-                        </td>
                       </tr>
                     );
                   })}

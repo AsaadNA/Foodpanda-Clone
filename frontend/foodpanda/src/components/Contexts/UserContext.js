@@ -17,6 +17,7 @@ export const UserProvider = (props) => {
     axios
       .get(`api/orders/customer/${window.localStorage.getItem("username")}`)
       .then(function (response) {
+        console.log(response);
         setOrders(response.data.data);
       })
       .catch((error) => {
