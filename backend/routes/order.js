@@ -41,7 +41,7 @@ router.get("/customer/:customerName", (req, res) => {
   const { customerName } = req.params;
   const result = orderSchema.find(
     {
-      customerName,
+      username: customerName,
     },
     (err, data) => {
       if (err) {
