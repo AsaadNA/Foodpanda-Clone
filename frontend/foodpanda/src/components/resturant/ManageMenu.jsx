@@ -52,7 +52,7 @@ const ManageMenu = () => {
       setItemDescription("");
       setItemName("");
       setItemPrice("");
-      setvalidatedItemForm(true);
+      setvalidatedItemForm(false);
       form.reset();
     }
   };
@@ -75,7 +75,7 @@ const ManageMenu = () => {
     setItemDescription("");
     setItemName("");
     setItemPrice("");
-    setvalidatedItemForm(true);
+    setvalidatedItemForm(false);
     document.getElementById("item-form").reset();
   };
   const handleItemDeletion = (e, CategoryName, ItemName) => {
@@ -90,7 +90,7 @@ const ManageMenu = () => {
     setItemDescription("");
     setItemName("");
     setItemPrice("");
-    setvalidatedItemForm(true);
+    setvalidatedItemForm(false);
     document.getElementById("item-form").reset();
   };
   const handleCategoryInsertion = (e, CategoryName) => {
@@ -102,7 +102,7 @@ const ManageMenu = () => {
     addCategory(CategoryName);
     e.preventDefault();
     setCategory("");
-    setvalidatedCategoryForm(true);
+    setvalidatedCategoryForm(false);
     document.getElementById("category-form").reset();
   };
 
@@ -115,7 +115,7 @@ const ManageMenu = () => {
     updateCategory(CategoryName);
     e.preventDefault();
     setCategory("");
-    setvalidatedCategoryForm(true);
+    setvalidatedCategoryForm(false);
     document.getElementById("category-form").reset();
   };
 
@@ -128,7 +128,7 @@ const ManageMenu = () => {
     deleteCategory(CategoryName);
     e.preventDefault();
     setCategory("");
-    setvalidatedCategoryForm(true);
+    setvalidatedCategoryForm(false);
     document.getElementById("category-form").reset();
   };
 
