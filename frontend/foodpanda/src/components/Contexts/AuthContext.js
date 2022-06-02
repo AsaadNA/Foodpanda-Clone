@@ -32,6 +32,7 @@ export const AuthProvider = (props) => {
       })
       .catch((error) => {
         console.log(error);
+        alert(error.response.data.error);
         setloading(false);
       });
   };
@@ -55,6 +56,7 @@ export const AuthProvider = (props) => {
       })
       .catch((error) => {
         console.log(error);
+        alert(error.response.data.error);
         setloading(false);
       });
   };

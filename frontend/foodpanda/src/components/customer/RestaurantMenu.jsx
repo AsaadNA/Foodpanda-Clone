@@ -93,7 +93,10 @@ const RestaurantMenu = () => {
           return (
             <Row key={item._id} style={{ textAlign: "left" }}>
               <p
-                style={{ fontSize: "20px", fontWeight: "bold" }}
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
                 className="mt-2"
               >
                 {item.categoryName}
