@@ -5,7 +5,7 @@ import ResturantCollection from "../home/ResturantCollection";
 const PlaceOrder = () => {
   return (
     <Container className="mt-5">
-      <h3>Availible Restaurants</h3>
+      <h3>Available Restaurants</h3>
       <p>
         Using the restaurants below, you can check them out and place your
         orders on foodpanda

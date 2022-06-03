@@ -76,7 +76,7 @@ const Navigation = ({ currentUser, userType }) => {
   return (
     <Navbar expand="lg" className="Navbar" variant="dark">
       <Container>
-        <Navbar.Brand>Food Panda</Navbar.Brand>
+        <Navbar.Brand>foodpanda</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav
