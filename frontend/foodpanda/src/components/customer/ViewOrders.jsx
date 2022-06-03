@@ -38,7 +38,7 @@ const ViewOrders = () => {
                                   <strong>Quantity:</strong> {item.itemQuantity}
                                 </li>
                                 <li>
-                                  <strong>Total Price:</strong>
+                                  <strong>Total Price: Rs. </strong>
                                   {item.totalPrice}
                                 </li>
                               </ul>
